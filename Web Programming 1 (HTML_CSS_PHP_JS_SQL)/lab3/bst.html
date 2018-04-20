@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Binary Search Tree</title>
+</head>
+<body>
+	<script type="text/javascript" src="http://students.engr.scu.edu/~adiaztos/resources/testBst.js"></script>
+	<script>
+		// Implement a Binary Search Tree using JS Constructors and Pro
+
+		// Uncomment this line to test your complete BST - make sure to pass a BST object created with the new keyword
+
+
+		function BinarySearchTree() {
+			this.root = new node(undefined,undefined,undefined);
+		}
+
+		function node(left, right, value) {
+			this.left = left;
+			this.right= right;
+			this.value = value;
+		}
+
+		BinarySearchTree.prototype.insert = function(value) {
+			this.root.insert(value);
+		}
+
+		BinarySearchTree.prototype.search = function(value) {
+			return this.root.search(value);
+		}
+
+		BinarySearchTree.prototype.inorder = function(fn) {
+			this.root.inorder(fn);
+		}
+
+		node.prototype.insert = function(value) {
+
+			if(this.value==undefined) {
+				this.value = value;
+			}
+
+			if(this.value>=value) {
+				if(this.left==undefined) {
+					this.left = new node(undefined,undefined,value);
+				} else {
+					this.left.insert(value);
+				}
+			} else if(this.value<value) {
+				if(this.right==undefined) {
+					this.right = new node(undefined,undefined,value);
+				} else {
+					this.right.insert(value);
+				}
+			}
+		}
+
+		node.prototype.search = function(value) {
+			if(this.value==value) {
+				return true;
+			} 
+			
+			if(this.value>value) {
+				if(this.left==undefined) {
+					return false;
+				} else {
+					return this.left.search(value);
+				}
+			} else if(this.value<value) {
+				if(this.right==undefined) {
+					return false;
+				} else {
+					return this.right.search(value);
+				}
+			}
+		}
+
+		node.prototype.inorder = function(fn) {
+			if(this.left!=undefined) {
+				this.left.inorder(fn);
+			}
+
+			fn(this.value);
+
+			if(this.right!=undefined) {
+				this.right.inorder(fn);
+			}
+		}
+
+		var bst = new BinarySearchTree();
+		testBst(bst);
+
+	</script>
+</body>
+</html>

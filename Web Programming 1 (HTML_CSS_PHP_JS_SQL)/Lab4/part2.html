@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab 4 - Part 2</title>
+	<style>
+		/* add any necessary styles here */
+	</style>
+</head>
+<body>
+	<h1>Calculator</h1>
+	<label>Input #1 <input id="input1" type="text"></label>
+	<label>Input #2 <input id="input2" type="text"></label>
+	<input type="button" value="add" class="operator">
+	<input type="button" value="subtract" class="operator">
+	<input type="button" value="multiply" class="operator">
+	<input type="button" value="divide" class="operator"> 
+	<div id="resultDiv">Operator: <span id="operator"></span><br>Result:<span id="result"></span><br><input type="button" value="clear" id="clear"></div>
+	<script>
+
+		    window.onload = function() {
+				var operators = document.getElementsByClassName("operator");
+				for(i in operators) {
+					console.log(operators[i].value);
+					operators[i].onclick = function() //3 undefined values, strangely
+					{
+						performOperation(this.value)
+					}
+				}
+
+				document.getElementById("clear").onclick = clearInput;
+			}
+
+			function performOperation(operator) {
+				console.log("performing operation "+operator);
+				var input1 = parseInt(document.getElementById("input1").value);
+				var input2 = parseInt(document.getElementById("input2").value);
+
+				var result;
+				var operatorSym;
+
+				if(operator=="add") {
+					result = input1 + input2;
+					operatorSym = "+";
+				} else if(operator=="subtract") {
+					result = input1 - input2;
+					operatorSym = "-";
+				} else if(operator=="multiply") {
+					result = input1 * input2;
+					operatorSym = "*";
+				} else if(operator=="divide") {
+					result = input1 / input2;
+					operatorSym = "/";
+				}
+				
+				document.getElementById("operator").innerHTML = operatorSym;
+				document.getElementById("result").innerHTML = result;
+			}
+
+			function clearInput() {
+				console.log("clearing");
+				document.getElementById("input1").value = "";
+				document.getElementById("input2").value = "";
+
+				document.getElementById("operator").innerHTML = "";
+				document.getElementById("result").innerHTML = "";
+			}
+    
+	</script>
+</body>
+</html>
