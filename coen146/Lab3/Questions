@@ -1,0 +1,5 @@
+Try them with a long file. Do you see any bit errors or data loss?
+No.
+
+Can you explain why FTv2 seems reliable data transfer service?
+This is reliable on small networks with little corruption.
